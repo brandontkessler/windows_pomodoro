@@ -16,7 +16,13 @@ class Pomodoro:
             icon_path=None, 
             duration=3
         )
+
+        # Await toaster completion
+        while self.toaster.notification_active():
+            time.sleep(0.1)
+        return
     
+
     def short_break(self, timing=300):
         print("starting break...")
         time.sleep(timing)
@@ -27,6 +33,12 @@ class Pomodoro:
             icon_path=None, 
             duration=3
         )
+        
+        # Await toaster completion
+        while self.toaster.notification_active():
+            time.sleep(0.1)
+        return
+
 
     def medium_break(self, timing=1800):
         print("starting break...")
@@ -39,8 +51,15 @@ class Pomodoro:
             duration=3
         )
 
+        # Await toaster completion
+        while self.toaster.notification_active():
+            time.sleep(0.1)
+        return
+
+
     def long_break(self, timing=3600):
         print("starting break...")
+
         time.sleep(timing)
         self.toaster.show_toast(
             "POMODORO", 
@@ -50,7 +69,13 @@ class Pomodoro:
             duration=3
         )
 
+        # Await toaster completion
+        while self.toaster.notification_active():
+            time.sleep(0.1)
+        return
+        
+
 if __name__=='__main__':
     pomodoro = Pomodoro()
-    pomodoro.task()
-    pomodoro.short_break()
+    pomodoro.task(2)
+    pomodoro.short_break(1)
